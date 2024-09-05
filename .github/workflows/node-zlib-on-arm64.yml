@@ -36,6 +36,7 @@ jobs:
             node-version: '21.6.2'
       - run: npm i zlib@1.0.5
 
+
   node-18200:
     name: Node.js 18.20.0
     runs-on: macos-14
@@ -80,4 +81,51 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: '22.0.0'
+      - run: npm i zlib@1.0.5
+
+
+  node-18:
+    name: Node.js 18 (latest)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '18'
+      - run: npm i zlib@1.0.5
+
+  node-20:
+    name: Node.js 20 (latest)
+    runs-on: macos-14
+    needs: node-18
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '20'
+      - run: npm i zlib@1.0.5
+
+  node-21:
+    name: Node.js 21 (latest)
+    runs-on: macos-14
+    needs: node-20
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '21'
+      - run: npm i zlib@1.0.5
+
+  node-22:
+    name: Node.js 22 (latest)
+    runs-on: macos-14
+    needs: node-21
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version: '22'
       - run: npm i zlib@1.0.5
